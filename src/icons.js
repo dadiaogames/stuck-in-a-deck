@@ -8,4 +8,5 @@ export const ICONS = {
   knowledge: <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/docomo/205/electric-light-bulb_1f4a1.png" style={{height}}></img>,
   search: <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/samsung/265/magnifying-glass-tilted-right_1f50e.png" style={{height}}></img>,
   atk: <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/crossed-swords_2694.png" style={{height}}></img>,
+  thread: <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/hiking-boot_1f97e.png" style={{height}}></img>,
 };
