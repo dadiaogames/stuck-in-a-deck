@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/stuck-in-a-deck/static/css/main.3542828a.chunk.css",
+    "main.js": "/stuck-in-a-deck/static/js/main.ab6374bd.chunk.js",
+    "main.js.map": "/stuck-in-a-deck/static/js/main.ab6374bd.chunk.js.map",
+    "runtime-main.js": "/stuck-in-a-deck/static/js/runtime-main.21a06495.js",
+    "runtime-main.js.map": "/stuck-in-a-deck/static/js/runtime-main.21a06495.js.map",
+    "static/js/2.919a1102.chunk.js": "/stuck-in-a-deck/static/js/2.919a1102.chunk.js",
+    "static/js/2.919a1102.chunk.js.map": "/stuck-in-a-deck/static/js/2.919a1102.chunk.js.map",
+    "index.html": "/stuck-in-a-deck/index.html",
+    "precache-manifest.7e850b9d848515a24abb230713851fb6.js": "/stuck-in-a-deck/precache-manifest.7e850b9d848515a24abb230713851fb6.js",
+    "service-worker.js": "/stuck-in-a-deck/service-worker.js",
+    "static/css/main.3542828a.chunk.css.map": "/stuck-in-a-deck/static/css/main.3542828a.chunk.css.map",
+    "static/js/2.919a1102.chunk.js.LICENSE.txt": "/stuck-in-a-deck/static/js/2.919a1102.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.21a06495.js",
+    "static/js/2.919a1102.chunk.js",
+    "static/css/main.3542828a.chunk.css",
+    "static/js/main.ab6374bd.chunk.js"
+  ]
+}
