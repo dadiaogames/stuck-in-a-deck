@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { BASIC_CARDS, CARDS } from "./cards";
+import { BASIC_CARDS, CARDS, YOU } from "./cards";
 import { MOBS, PORTAL } from './enemies';
 
 function setup(ctx) {
@@ -8,12 +8,13 @@ function setup(ctx) {
   G.hp = 20;
   G.threads = 0;
   G.goal = 10;
+  G.anger_threshold = 4;
   refresh_data(G);
 
-  G.deck = ctx.random.Shuffle([..._.times(5, ()=>BASIC_CARDS.k1), BASIC_CARDS.k2, BASIC_CARDS.atk1, BASIC_CARDS.atk1, BASIC_CARDS.search1, BASIC_CARDS.search1, PORTAL]);
+  G.deck = ctx.random.Shuffle([..._.times(5, ()=>BASIC_CARDS.k1), BASIC_CARDS.k2, BASIC_CARDS.atk1, BASIC_CARDS.atk1, BASIC_CARDS.search1, BASIC_CARDS.search1, PORTAL, YOU]);
   G.hand = [];
   G.discard = [];
-  G.shop = [...CARDS, ...Object.values(BASIC_CARDS)];
+  G.shop = [...ctx.random.Shuffle(CARDS).slice(0, 9), ...Object.values(BASIC_CARDS)].filter(x => x.price > 0);
 
   return G;
 }
@@ -64,7 +65,7 @@ function search(G, ctx) {
   }
 }
 
-function use_knowledge(G, ctx, price) {
+export function use_knowledge(G, ctx, price) {
   if (G.knowledge >= price) {
     G.knowledge -= price;
     return true;
@@ -81,15 +82,21 @@ function end_turn(G, ctx) {
 
 function buy(G, ctx, idx) {
   let card = G.shop[idx];
-  if (use_knowledge(G, ctx, card.price)) {
+  if (card && use_knowledge(G, ctx, card.price)) {
     G.discard.push({...card});
   }
 }
 
 function use(G, ctx, idx) {
   let card = G.hand[idx];
-  card.onUse && card.onUse(G, ctx, card);
+  card && card.onUse && card.onUse(G, ctx, card);
   // No exhaust, use infinite times if you like so
+}
+
+function tweak(G, ctx, tweakers) {
+  for (let key in tweakers) {
+    G[key] = tweakers.key;
+  }
 }
 
 export function deal_damage(G, ctx, amount) {
@@ -116,6 +123,7 @@ export const LDDBG = {
   setup,
   moves: {
     reset_and_tweak,
+    tweak,
     end_turn,
     buy,
     use,
