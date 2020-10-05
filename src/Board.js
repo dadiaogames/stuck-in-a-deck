@@ -59,11 +59,11 @@ export function Board(props) {
     let new_tweakers = Object.assign({}, tweakers);
     if (direction < 0) {
       new_tweakers.goal -= score_diff;
-      new_tweakers.hp -= hp_diff;
+      new_tweakers.hp += hp_diff;
     }
     else {
       new_tweakers.goal += score_diff;
-      new_tweakers.hp += hp_diff;
+      new_tweakers.hp -= hp_diff;
     }
     props.reset();
     props.moves.tweak(new_tweakers);
