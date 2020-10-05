@@ -87,6 +87,11 @@ function buy(G, ctx, idx) {
   }
 }
 
+function refresh_shop(G, ctx, refresh_times) {
+  _.times(refresh_times, ctx.random.D4);
+  G.shop = [...ctx.random.Shuffle(CARDS).slice(0, 7), ...Object.values(BASIC_CARDS)].filter(x => x.price > 2);
+}
+
 function pay_card_cost(G, ctx, card) {
   if (card.cost_type == "power") {
     if (use_power(G, ctx)) {
@@ -146,6 +151,7 @@ export const LDDBG = {
     buy,
     use,
     search,
+    refresh_shop,
   },
   turn: {
     onBegin: onTurnBegin,

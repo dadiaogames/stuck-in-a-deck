@@ -71,6 +71,7 @@ export function Board(props) {
     props.reset();
     props.moves.tweak(new_tweakers);
     set_tweakers(new_tweakers);
+    props.moves.refresh_shop(Math.floor(Math.random()*100));
   };
 
   return <div className="board">

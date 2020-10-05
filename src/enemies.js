@@ -26,7 +26,7 @@ export const PORTAL = {
   desc: "PORTAL",
   src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/mozilla/36/door_1f6aa.png",
   hp: 999,
-  is_mob: true,
+  // is_mob: true,
   is_portal: true,
   anger: 0,
   onPlay(G, ctx, card) {

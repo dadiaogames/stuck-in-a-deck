@@ -189,17 +189,17 @@ export const CARDS = [
       }
     }
   },
-  {
-    desc: <span>{ICONS.discard}, {ICONS.knowledge}3: +2{ICONS.atk}</span>,
-    price: 3,
-    src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/fencer_1f93a.png",
-    onUse(G, ctx, card) {
-      if (use_knowledge(G, ctx, 3)) {
-        discard(G, card);
-        G.atk += 2;
-      }
-    }
-  },
+  // {
+  //   desc: <span>{ICONS.discard}, {ICONS.knowledge}3: +2{ICONS.atk}</span>,
+  //   price: 3,
+  //   src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/fencer_1f93a.png",
+  //   onUse(G, ctx, card) {
+  //     if (use_knowledge(G, ctx, 3)) {
+  //       discard(G, card);
+  //       G.atk += 2;
+  //     }
+  //   }
+  // },
   {
     desc: <span>{ICONS.discard}, {ICONS.knowledge}3: +2{ICONS.search}</span>,
     price: 3,
@@ -231,16 +231,16 @@ export const CARDS = [
       }
     }
   },
-  {
-    desc: <span>{ICONS.discard}: +1{ICONS.card}, then +1{ICONS.knowledge} per card in your hand that priced 3</span>,
-    price: 3,
-    src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/leopard_1f406.png",
-    cost_type: "discard",
-    onUse(G, ctx, card) {
-      draw(G, ctx);
-      G.knowldge += G.hand.filter(x => x.price == 3).length;
-    }
-  },
+  // {
+  //   desc: <span>{ICONS.discard}: +1{ICONS.card}, then +1{ICONS.knowledge} per card in your hand that priced 3</span>,
+  //   price: 3,
+  //   src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/leopard_1f406.png",
+  //   cost_type: "discard",
+  //   onUse(G, ctx, card) {
+  //     draw(G, ctx);
+  //     G.knowldge += G.hand.filter(x => x.price == 3).length;
+  //   }
+  // },
   {
     desc: <span>{ICONS.power}: +1{ICONS.search} per 5{ICONS.card} in your overall deck</span>,
     price: 4,
@@ -268,7 +268,7 @@ export const CARDS = [
     }
   },
   {
-    desc: <span>Purge: Add a copy of your most expensive {ICONS.card} in hand to your discard</span>,
+    desc: <span>Purge this: Add a copy of your most expensive {ICONS.card} in hand to your discard</span>,
     price: 3,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/263/ticket_1f3ab.png",
     onUse(G, ctx, card) {
@@ -277,6 +277,39 @@ export const CARDS = [
       if (expensive_card) {
         G.discard.push({...expensive_card});
       }
+    }
+  },
+  {
+    desc: <span>{ICONS.discard}: +2{ICONS.knowledge}, if {ICONS.power} is more than 3, then +1{ICONS.power} and +1{ICONS.card}</span>,
+    price: 4,
+    src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/battery_1f50b.png",
+    cost_type: "discard",
+    onUse(G, ctx, card) {
+      G.knowledge += 2;
+      if (G.power >= 3) {
+        G.power += 1;
+        draw(G, ctx);
+      }
+    }
+  },
+  {
+    desc: <span>{ICONS.atk}2: +2{ICONS.power}</span>,
+    price: 2,
+    src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/soccer-ball_26bd.png",
+    onUse(G, ctx, card) {
+      if (G.atk >= 2) {
+        G.atk -= 2;
+        G.power += 2;
+      }
+    }
+  },
+  {
+    desc: <span>{ICONS.power}: +1{ICONS.knowledge} per {ICONS.card}[+1{ICONS.knowledge}] in your hand</span>,
+    price: 3,
+    src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/ledger_1f4d2.png",
+    cost_type: "power",
+    onUse(G, ctx, card) {
+      G.knowledge += G.hand.filter(x => x.price == 0).length;
     }
   },
 ].map(x => ({...x, is_action:true}));
