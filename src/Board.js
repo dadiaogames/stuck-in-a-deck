@@ -22,7 +22,7 @@ export function Board(props) {
   let [show_shop, set_show_shop] = useState(false);
   let [hand_selected, set_hand_selected] = useState(-1);
   let [shop_selected, set_shop_selected] = useState(-1);
-  let [tweakers, set_tweakers] = useState({goal:20, hp:20});
+  let [tweakers, set_tweakers] = useState({goal:10, hp:20});
 
   let use_card = "Use Card";
   if (show_shop) {
