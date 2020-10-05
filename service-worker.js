@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/stuck-in-a-deck/precache-manifest.d915a6d9e8b7ea32837f7898d3f049f3.js"
+  "/stuck-in-a-deck/precache-manifest.79f79aaf825c0f343dd32044b10d4e4e.js"
 );
 
 self.addEventListener('message', (event) => {
