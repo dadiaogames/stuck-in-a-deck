@@ -77,6 +77,7 @@ export const BASIC_CARDS = {
 export const YOU = {
   desc: <span>YOU(+1{ICONS.power})<br/>{ICONS.power}: +3{ICONS.knowledge}</span>,
   src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/older-man_1f474.png",
+  is_action: true,
   onPlay(G, ctx, card) {
     G.power += 1;
   },

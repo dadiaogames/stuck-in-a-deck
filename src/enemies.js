@@ -3,11 +3,11 @@ import { deal_damage, use_power } from './Game';
 import { ICONS } from './icons';
 
 function attack(G, ctx, card) {
-  if (use_power(G, ctx)) {
-    card.hp -= G.atk;
-    if (card.hp <= 0) {
-      G.hand = G.hand.filter(x => x != card);
-    }
+  let hit_points = Math.min(G.atk, card.hp);
+  G.atk -= hit_points;
+  card.hp -= hit_points;
+  if (card.hp <= 0) {
+    G.hand = G.hand.filter(x => x != card);
   }
 }
 
