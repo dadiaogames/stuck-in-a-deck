@@ -95,7 +95,7 @@ function use(G, ctx, idx) {
 
 function tweak(G, ctx, tweakers) {
   for (let key in tweakers) {
-    G[key] = tweakers.key;
+    G[key] = tweakers[key];
   }
 }
 

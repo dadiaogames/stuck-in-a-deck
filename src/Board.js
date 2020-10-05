@@ -53,8 +53,8 @@ export function Board(props) {
 
   let tune_difficulty = (direction) => {
     let score_diff = Math.ceil(Math.random() * 3);
-    let hp_diff = Math.floor(Math.random() * 3);
-    let new_tweakers = {...tweakers};
+    let hp_diff = Math.ceil(Math.random() * 3);
+    let new_tweakers = Object.assign({}, tweakers);
     if (direction < 0) {
       new_tweakers.goal -= score_diff;
       new_tweakers.hp -= hp_diff;
