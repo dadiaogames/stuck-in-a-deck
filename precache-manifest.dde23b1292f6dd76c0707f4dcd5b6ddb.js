@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "33ef5290ddf054c788ab5edc3c247667",
+    "revision": "8e82fb014b8d47355bf7797ca86958d1",
     "url": "/stuck-in-a-deck/index.html"
   },
   {
-    "revision": "d681efe34e8014cde859",
+    "revision": "73985264f3d7256204d2",
     "url": "/stuck-in-a-deck/static/css/main.1f1e8963.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/stuck-in-a-deck/static/js/2.982a9038.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d681efe34e8014cde859",
-    "url": "/stuck-in-a-deck/static/js/main.59603719.chunk.js"
+    "revision": "73985264f3d7256204d2",
+    "url": "/stuck-in-a-deck/static/js/main.57ca1c19.chunk.js"
   },
   {
     "revision": "9cea5b178879915c46a8",
