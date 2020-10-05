@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/stuck-in-a-deck/static/css/main.1f1e8963.chunk.css",
-    "main.js": "/stuck-in-a-deck/static/js/main.68534ef0.chunk.js",
-    "main.js.map": "/stuck-in-a-deck/static/js/main.68534ef0.chunk.js.map",
+    "main.js": "/stuck-in-a-deck/static/js/main.a14f6e8e.chunk.js",
+    "main.js.map": "/stuck-in-a-deck/static/js/main.a14f6e8e.chunk.js.map",
     "runtime-main.js": "/stuck-in-a-deck/static/js/runtime-main.21a06495.js",
     "runtime-main.js.map": "/stuck-in-a-deck/static/js/runtime-main.21a06495.js.map",
     "static/js/2.c2f16cf2.chunk.js": "/stuck-in-a-deck/static/js/2.c2f16cf2.chunk.js",
     "static/js/2.c2f16cf2.chunk.js.map": "/stuck-in-a-deck/static/js/2.c2f16cf2.chunk.js.map",
     "index.html": "/stuck-in-a-deck/index.html",
-    "precache-manifest.05be101382bdffd8b09b9b09d5821fa2.js": "/stuck-in-a-deck/precache-manifest.05be101382bdffd8b09b9b09d5821fa2.js",
+    "precache-manifest.10943ef241a8c62329ef25b5aafae37b.js": "/stuck-in-a-deck/precache-manifest.10943ef241a8c62329ef25b5aafae37b.js",
     "service-worker.js": "/stuck-in-a-deck/service-worker.js",
     "static/css/main.1f1e8963.chunk.css.map": "/stuck-in-a-deck/static/css/main.1f1e8963.chunk.css.map",
     "static/js/2.c2f16cf2.chunk.js.LICENSE.txt": "/stuck-in-a-deck/static/js/2.c2f16cf2.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.21a06495.js",
     "static/js/2.c2f16cf2.chunk.js",
     "static/css/main.1f1e8963.chunk.css",
-    "static/js/main.68534ef0.chunk.js"
+    "static/js/main.a14f6e8e.chunk.js"
   ]
 }
