@@ -35,11 +35,14 @@ export function Board(props) {
     }
   }
 
+  let card = props.G.hand[hand_selected];
+  let item = props.G.shop[shop_selected];
+
   let handle_use_card = () => {
     if (show_shop) {
       props.moves.buy(shop_selected);
       set_shop_selected(-1);
-      if (props.G.knowledge - props.G.shop[shop_selected].price < 3) { 
+      if ((!item) || props.G.knowledge - item.price < 3) { 
         set_show_shop(false);
       }
     }

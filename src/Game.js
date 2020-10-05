@@ -14,7 +14,7 @@ function setup(ctx) {
   G.deck = ctx.random.Shuffle([..._.times(5, ()=>BASIC_CARDS.k1), BASIC_CARDS.k2, BASIC_CARDS.atk1, BASIC_CARDS.atk1, BASIC_CARDS.search1, BASIC_CARDS.search1, PORTAL, YOU]);
   G.hand = [];
   G.discard = [];
-  G.shop = [...ctx.random.Shuffle(CARDS).slice(0, 7), ...Object.values(BASIC_CARDS)].filter(x => x.price > 0);
+  G.shop = [...ctx.random.Shuffle(CARDS).slice(0, 7), ...Object.values(BASIC_CARDS)].filter(x => x.price > 2);
 
   return G;
 }
@@ -87,10 +87,27 @@ function buy(G, ctx, idx) {
   }
 }
 
+function pay_card_cost(G, ctx, card) {
+  if (card.cost_type == "power") {
+    if (use_power(G, ctx)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  } 
+  else if (card.cost_type == "discard") {
+    G.hand = G.hand.filter(x => x != card);
+    return true;
+  }
+  else {
+    return true;
+  }
+}
+
 function use(G, ctx, idx) {
   let card = G.hand[idx];
-  card && card.onUse && card.onUse(G, ctx, card);
-  // No exhaust, use infinite times if you like so
+  card && card.onUse && pay_card_cost(G, ctx, card) && card.onUse(G, ctx, card);
 }
 
 function tweak(G, ctx, tweakers) {

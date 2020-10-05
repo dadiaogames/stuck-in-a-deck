@@ -30,22 +30,7 @@ export const BASIC_CARDS = {
       G.knowledge += 3;
     }
   },
-  atk1: {
-    desc: <span>+1 {ICONS.atk}</span>,
-    src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/crossed-swords_2694.png",
-    price: 2,
-    onPlay(G, ctx) {
-      G.atk += 1;
-    }
-  },
-  atk2: {
-    desc: <span>+2 {ICONS.atk}</span>,
-    src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/crossed-swords_2694.png",
-    price: 5,
-    onPlay(G, ctx) {
-      G.atk += 2;
-    }
-  },
+  
   search1: {
     desc: <span>+1 {ICONS.search}</span>,
     price: 2,
@@ -68,6 +53,23 @@ export const BASIC_CARDS = {
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/samsung/265/magnifying-glass-tilted-right_1f50e.png",
     onPlay(G, ctx) {
       G.search += 3;
+    }
+  },
+
+  atk1: {
+    desc: <span>+1 {ICONS.atk}</span>,
+    src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/crossed-swords_2694.png",
+    price: 2,
+    onPlay(G, ctx) {
+      G.atk += 1;
+    }
+  },
+  atk2: {
+    desc: <span>+2 {ICONS.atk}</span>,
+    src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/crossed-swords_2694.png",
+    price: 5,
+    onPlay(G, ctx) {
+      G.atk += 2;
     }
   },
 };
@@ -109,8 +111,18 @@ export const CARDS = [
     }
   },
   {
+    desc: <span>{ICONS.discard}: +1{ICONS.power}, +1{ICONS.card}</span>,
+    price: 3,
+    src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/horse-racing_1f3c7.png",
+    onUse(G, ctx, card) {
+      discard(G, card);
+      G.power += 1;
+      draw(G, ctx);
+    }
+  },
+  {
     desc: <span>{ICONS.power}: Put an [+2{ICONS.knowledge}] into your {ICONS.deck} </span>,
-    price: 4,
+    price: 2,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/bearded-person_emoji-modifier-fitzpatrick-type-1-2_1f9d4-1f3fb_1f3fb.png",
     onUse(G, ctx, card) {
       if (use_power(G, ctx)) {
@@ -149,7 +161,8 @@ export const CARDS = [
         let treasure = ctx.random.Shuffle(G.hand.filter(x => x.is_treasure))[0];
         if (treasure) {
           treasure.desc = [treasure.desc, <span> ,+1 {ICONS.knowledge}</span>];
-          treasure.onPlay = (G, ctx) => {treasure.onPlay(G, ctx); G.knowledge += 1;};
+          let previews_onplay = treasure.onPlay;
+          treasure.onPlay = (G, ctx) => {previews_onplay(G, ctx); G.knowledge += 1;};
         }
       }
     }
@@ -205,6 +218,65 @@ export const CARDS = [
     onUse(G, ctx, card) {
       discard(G, card);
       G.power += 2;
+    }
+  },
+  {
+    desc: <span>{ICONS.knowledge}2: Purge the cheapest card from your hand</span>,
+    price: 5,
+    src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/emojidex/112/black-scissors_2702.png",
+    onUse(G, ctx, card) {
+      if (use_knowledge(G, ctx, 2)) {
+        let purged = G.hand.filter(x => x.price >= 0).sort((a,b) => a.price - b.price)[0];
+        G.hand = G.hand.filter(x => x != purged);
+      }
+    }
+  },
+  {
+    desc: <span>{ICONS.discard}: +1{ICONS.card}, then +1{ICONS.knowledge} per card in your hand that priced 3</span>,
+    price: 3,
+    src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/leopard_1f406.png",
+    cost_type: "discard",
+    onUse(G, ctx, card) {
+      draw(G, ctx);
+      G.knowldge += G.hand.filter(x => x.price == 3).length;
+    }
+  },
+  {
+    desc: <span>{ICONS.power}: +1{ICONS.search} per 5{ICONS.card} in your overall deck</span>,
+    price: 4,
+    src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/sunflower_1f33b.png",
+    cost_type: "power",
+    onUse(G, ctx, card) {
+      G.search += Math.floor([...G.deck, ...G.hand, ...G.discard].length / 5);
+    }
+  },
+  {
+    desc: <span>{ICONS.power}: Upgrade 1{ICONS.card} in your hand, let it +1{ICONS.search}, +2{ICONS.atk}, or +2{ICONS.knowledge}</span>,
+    price: 3,
+    src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/263/pen_1f58a.png",
+    cost_type: "power",
+    onUse(G, ctx) {
+      let card = ctx.random.Shuffle(G.hand)[0];
+      let upgrade = ctx.random.Shuffle([
+        [<span>, +1{ICONS.search}</span>, (G, ctx) => {G.search += 1;}],
+        [<span>, +2{ICONS.atk}</span>, (G, ctx) => {G.atk += 2;}],
+        [<span>, +2{ICONS.knowledge}</span>, (G, ctx) => {G.knowledge += 2;}],
+      ])[0];
+      card.desc = [card.desc, upgrade[0]];
+      let previews_onplay = card.onPlay;
+      card.onPlay = (G, ctx) => {previews_onplay && previews_onplay(G, ctx, card); upgrade[1](G, ctx);};
+    }
+  },
+  {
+    desc: <span>Purge: Add a copy of your most expensive {ICONS.card} in hand to your discard</span>,
+    price: 3,
+    src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/263/ticket_1f3ab.png",
+    onUse(G, ctx, card) {
+      G.hand = G.hand.filter(x => x != card);
+      let expensive_card = G.hand.filter(x => x.price >= 0).sort((a,b) => b.price - a.price)[0];
+      if (expensive_card) {
+        G.discard.push({...expensive_card});
+      }
     }
   },
 ].map(x => ({...x, is_action:true}));
