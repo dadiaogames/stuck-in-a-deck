@@ -50,6 +50,7 @@ export function Board(props) {
   let handle_use_card = () => {
     if (show_shop) {
       props.moves.buy(shop_selected);
+      set_ripples({...ripples, [shop_selected]: true})
       set_shop_selected(-1);
       if ((!item) || props.G.knowledge - item.price < 3) { 
         set_show_shop(false);

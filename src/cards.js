@@ -169,8 +169,9 @@ export const CARDS = [
     }
   },
   {
-    desc: <span>{ICONS.atk}2: +4{ICONS.search}</span>,
+    desc: <span>{ICONS.discard},{ICONS.atk}2: +4{ICONS.search}</span>,
     price: 3,
+    cost_type: "discard",
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/263/man-running_1f3c3-200d-2642-fe0f.png",
     onUse(G, ctx, card) {
       if (G.atk >= 2) {
@@ -180,8 +181,9 @@ export const CARDS = [
     }
   },
   {
-    desc: <span>{ICONS.search}2: +4{ICONS.atk}</span>,
+    desc: <span>{ICONS.discard},{ICONS.search}2: +4{ICONS.atk}</span>,
     price: 3,
+    cost_type: "discard",
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/bow-and-arrow_1f3f9.png",
     onUse(G, ctx, card) {
       if (G.search >= 2) {
