@@ -14,7 +14,7 @@ function setup(ctx) {
   G.deck = ctx.random.Shuffle([..._.times(5, ()=>BASIC_CARDS.k1), BASIC_CARDS.k2, BASIC_CARDS.atk1, BASIC_CARDS.atk1, BASIC_CARDS.search1, BASIC_CARDS.search1, PORTAL, YOU]);
   G.hand = [];
   G.discard = [];
-  G.shop = [...ctx.random.Shuffle(CARDS).slice(0, 7), ...Object.values(BASIC_CARDS)].filter(x => x.price > 2);
+  G.shop = [...ctx.random.Shuffle(CARDS).slice(0, 7), ...Object.values(BASIC_CARDS).filter(x => x.price > 2)];
 
   return G;
 }
@@ -89,7 +89,7 @@ function buy(G, ctx, idx) {
 
 function refresh_shop(G, ctx, refresh_times) {
   _.times(refresh_times, ctx.random.D4);
-  G.shop = [...ctx.random.Shuffle(CARDS).slice(0, 7), ...Object.values(BASIC_CARDS)].filter(x => x.price > 2);
+  G.shop = [...ctx.random.Shuffle(CARDS).slice(0, 7), ...Object.values(BASIC_CARDS).filter(x => x.price > 2)];
 }
 
 function pay_card_cost(G, ctx, card) {
