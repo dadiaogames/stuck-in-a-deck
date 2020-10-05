@@ -14,4 +14,5 @@ export const ICONS = {
   skull: <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/microsoft/209/skull_1f480.png" style={{height}}></img>,
   deck: <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/htc/37/bookmark-tabs_1f4d1.png" style={{height}}></img>,
   scissor: <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/openmoji/252/scissors_2702.png" style={{height}}></img>,
+  out: <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/263/skull-and-crossbones_2620.png" style={{height}}></img>,
 };

@@ -254,12 +254,12 @@ export const CARDS = [
     }
   },
   {
-    desc: <span>{ICONS.power}: Upgrade 1{ICONS.card} in your hand, let it +1{ICONS.search}, +2{ICONS.atk}, or +2{ICONS.knowledge}</span>,
+    desc: <span>{ICONS.power}: Upgrade 1{ICONS.card} in your hand(with no costy effects), let it +1{ICONS.search}, +2{ICONS.atk}, or +2{ICONS.knowledge}</span>,
     price: 3,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/263/pen_1f58a.png",
     cost_type: "power",
     onUse(G, ctx) {
-      let card = ctx.random.Shuffle(G.hand)[0];
+      let card = ctx.random.Shuffle(G.hand.filter(x => x.onPlay))[0];
       let upgrade = ctx.random.Shuffle([
         [<span>, +1{ICONS.search}</span>, (G, ctx) => {G.search += 1;}],
         [<span>, +2{ICONS.atk}</span>, (G, ctx) => {G.atk += 2;}],
@@ -267,7 +267,7 @@ export const CARDS = [
       ])[0];
       card.desc = [card.desc, upgrade[0]];
       let previews_onplay = card.onPlay;
-      card.onPlay = (G, ctx) => {previews_onplay && previews_onplay(G, ctx, card); upgrade[1](G, ctx);};
+      card.onPlay = (G, ctx) => {previews_onplay(G, ctx, card); upgrade[1](G, ctx);};
     }
   },
   {

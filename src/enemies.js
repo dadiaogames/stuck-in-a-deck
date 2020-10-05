@@ -8,17 +8,21 @@ function attack(G, ctx, card) {
   card.hp -= hit_points;
   if (card.hp <= 0) {
     G.hand = G.hand.filter(x => x != card);
+    card.onOut(G, ctx, card);
   }
 }
 
 export const MOBS = [
   {
-    desc: <span>-2{ICONS.hp}</span>,
+    desc: <span>-2{ICONS.hp} &nbsp;({ICONS.out}: +3{ICONS.search})</span>,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/microsoft/209/imp_1f47f.png",
     hp: 4,
     onPlay(G, ctx) {
       deal_damage(G, ctx, 2);
-    }
+    },
+    onOut(G, ctx) {
+      G.search += 3;
+    },
   },
 ].map(mob => ({...mob, is_mob:true, onUse:attack}));
 
