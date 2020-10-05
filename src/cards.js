@@ -213,7 +213,7 @@ export const CARDS = [
   },
   {
     desc: <span>{ICONS.discard}: +2{ICONS.power}</span>,
-    price: 5,
+    price: 6,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/hourglass-with-flowing-sand_23f3.png",
     onUse(G, ctx, card) {
       discard(G, card);
@@ -222,7 +222,7 @@ export const CARDS = [
   },
   {
     desc: <span>{ICONS.knowledge}2: Purge the cheapest card from your hand</span>,
-    price: 5,
+    price: 2,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/emojidex/112/black-scissors_2702.png",
     onUse(G, ctx, card) {
       if (use_knowledge(G, ctx, 2)) {
