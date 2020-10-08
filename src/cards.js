@@ -145,7 +145,7 @@ export const CARDS = [
   },
   {
     desc: <span>{ICONS.discard}: +1{ICONS.power}, +2{ICONS.knowledge}</span>,
-    price: 5,
+    price: 4,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/dancer_1f483.png",
     onUse(G, ctx, card) {
       discard(G, card);
@@ -245,16 +245,16 @@ export const CARDS = [
   //   }
   // },
   {
-    desc: <span>{ICONS.power}: +1{ICONS.search} per 5{ICONS.card} in your overall deck</span>,
+    desc: <span>{ICONS.discard}: +1{ICONS.search} per 5{ICONS.card} in your overall deck</span>,
     price: 4,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/sunflower_1f33b.png",
-    cost_type: "power",
+    cost_type: "discard",
     onUse(G, ctx, card) {
       G.search += Math.floor([...G.deck, ...G.hand, ...G.discard].length / 5);
     }
   },
   {
-    desc: <span>{ICONS.power}: Upgrade 1{ICONS.card} in your hand(with no costy effects), let it +1{ICONS.search}, +2{ICONS.atk}, or +2{ICONS.knowledge}</span>,
+    desc: <span>{ICONS.power}: Upgrade 1{ICONS.card} in your hand, let it +1{ICONS.search}, +2{ICONS.atk}, or +2{ICONS.knowledge}</span>,
     price: 3,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/263/pen_1f58a.png",
     cost_type: "power",
@@ -283,22 +283,23 @@ export const CARDS = [
     }
   },
   {
-    desc: <span>{ICONS.discard}: +2{ICONS.knowledge}, if {ICONS.power} is more than 3, then +1{ICONS.power} and +1{ICONS.card}</span>,
+    desc: <span>{ICONS.discard}: +2{ICONS.knowledge}, if {ICONS.power} is more than 2, then +1{ICONS.power} and +1{ICONS.card}</span>,
     price: 4,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/battery_1f50b.png",
     cost_type: "discard",
     onUse(G, ctx, card) {
       G.knowledge += 2;
-      if (G.power >= 3) {
+      if (G.power >= 2) {
         G.power += 1;
         draw(G, ctx);
       }
     }
   },
   {
-    desc: <span>{ICONS.atk}2: +2{ICONS.power}</span>,
+    desc: <span>{ICONS.discard}, {ICONS.atk}2: +2{ICONS.power}</span>,
     price: 2,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/soccer-ball_26bd.png",
+    cost_type: "discard",
     onUse(G, ctx, card) {
       if (G.atk >= 2) {
         G.atk -= 2;
@@ -306,13 +307,13 @@ export const CARDS = [
       }
     }
   },
-  {
-    desc: <span>{ICONS.power}: +1{ICONS.knowledge} per {ICONS.card}[+1{ICONS.knowledge}] in your hand</span>,
-    price: 3,
-    src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/ledger_1f4d2.png",
-    cost_type: "power",
-    onUse(G, ctx, card) {
-      G.knowledge += G.hand.filter(x => x.price == 0).length;
-    }
-  },
+  // {
+  //   desc: <span>{ICONS.power}: +1{ICONS.knowledge} per {ICONS.card}[+1{ICONS.knowledge}] in your hand</span>,
+  //   price: 3,
+  //   src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/ledger_1f4d2.png",
+  //   cost_type: "power",
+  //   onUse(G, ctx, card) {
+  //     G.knowledge += G.hand.filter(x => x.price == 0).length;
+  //   }
+  // },
 ].map(x => ({...x, is_action:true}));

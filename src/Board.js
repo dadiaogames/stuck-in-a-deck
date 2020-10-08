@@ -73,8 +73,8 @@ export function Board(props) {
   let select = (idx) => show_shop?set_shop_selected(idx):set_hand_selected(idx);
 
   let tune_difficulty = (direction) => {
-    let score_diff = Math.ceil(Math.random() * 3);
-    let hp_diff = Math.ceil(Math.random() * 3);
+    let score_diff = Math.ceil(Math.random() * 4);
+    let hp_diff = Math.ceil(Math.random() * 2);
     let new_tweakers = Object.assign({}, tweakers);
     if (direction < 0) {
       new_tweakers.goal -= score_diff;
