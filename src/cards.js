@@ -245,12 +245,12 @@ export const CARDS = [
   //   }
   // },
   {
-    desc: <span>{ICONS.discard}: +1{ICONS.search} per 5{ICONS.card} in your overall deck</span>,
+    desc: <span>{ICONS.discard}: +1{ICONS.search} per 8{ICONS.card} in your overall deck</span>,
     price: 4,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/sunflower_1f33b.png",
     cost_type: "discard",
     onUse(G, ctx, card) {
-      G.search += Math.floor([...G.deck, ...G.hand, ...G.discard].length / 5);
+      G.search += Math.floor([...G.deck, ...G.hand, ...G.discard].length / 8);
     }
   },
   {
