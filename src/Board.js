@@ -14,8 +14,9 @@ function show_tutorial() {
 function Card(props) {
   let shaker = useShaker(props.shaker.shaking, props.shaker.set_shaking, -30, -30, {duration:125});
 
+  // TODO: Reconstruct this into "get_desc" function
   return <animated.div className="card" style={{border:(props.selected)?"3px solid blue":undefined, ...shaker}} onClick={props.handleClick}>
-    <div className="card-desc">{(props.price>=0)?["(",ICONS.knowledge,props.price,")", <br/>]:undefined}{props.desc}{props.card.is_mob?[<br/>,"(",ICONS.hp,props.card.hp,"/4)"]:undefined}{props.card.is_portal?["(",ICONS.skull,props.card.anger,"/",props.G.anger_threshold,")"]:undefined}</div>
+    <div className="card-desc">{(props.price>=0)?["(",ICONS.knowledge,props.price,")", <br/>]:undefined}{props.desc}{props.card.is_mob?[<br/>,"(",ICONS.hp,props.card.hp,"/",props.card.max_hp,")"]:undefined}{props.card.is_portal?["(",ICONS.skull,props.card.anger,"/",props.G.anger_threshold,")"]:undefined}</div>
     <div className="card-container" >
       <img className="card-img" src={props.src}></img>
     </div>

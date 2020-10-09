@@ -93,8 +93,8 @@ export const CARDS = [
     desc: <span>{ICONS.discard}: +2{ICONS.card}</span>,
     price: 5,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/test-tube_1f9ea.png",
+    cost_type: "discard",
     onUse(G, ctx, card) {
-      discard(G, card);
       draw(G, ctx);
       draw(G, ctx);
     }
@@ -103,20 +103,19 @@ export const CARDS = [
     desc: <span>{ICONS.power}: +3{ICONS.card}</span>,
     price: 4,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/263/memo_1f4dd.png",
+    cost_type: "power",
     onUse(G, ctx, card) {
-      if (use_power(G, ctx)) {
         draw(G, ctx);
         draw(G, ctx);
         draw(G, ctx);
-      }
     }
   },
   {
     desc: <span>{ICONS.discard}: +1{ICONS.power}, +1{ICONS.card}</span>,
     price: 3,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/horse-racing_1f3c7.png",
+    cost_type: "discard",
     onUse(G, ctx, card) {
-      discard(G, card);
       G.power += 1;
       draw(G, ctx);
     }
@@ -125,30 +124,28 @@ export const CARDS = [
     desc: <span>{ICONS.power}: Put an [+2{ICONS.knowledge}] into your {ICONS.deck} </span>,
     price: 2,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/bearded-person_emoji-modifier-fitzpatrick-type-1-2_1f9d4-1f3fb_1f3fb.png",
+    cost_type: "power",
     onUse(G, ctx, card) {
-      if (use_power(G, ctx)) {
         G.deck.unshift(BASIC_CARDS.k2);
-      }
     }
   },
   {
     desc: <span>{ICONS.power}: Purge an [+1{ICONS.knowledge}] card, +3{ICONS.knowledge} </span>,
     price: 4,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/whatsapp/238/black-scissors_2702.png",
+    cost_type: "power",
     onUse(G, ctx, card) {
-      if (use_power(G, ctx)) {
         let copper = G.hand.find(x => x.price == 0);
         G.hand = G.hand.filter(x => x != copper);
         G.knowledge += 3;
-      }
     }
   },
   {
     desc: <span>{ICONS.discard}: +1{ICONS.power}, +2{ICONS.knowledge}</span>,
     price: 4,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/dancer_1f483.png",
+    cost_type: "discard",
     onUse(G, ctx, card) {
-      discard(G, card);
       G.power += 1;
       G.knowledge += 2;
     }
@@ -157,15 +154,14 @@ export const CARDS = [
     desc: <span>{ICONS.power}: Turn one of your [+X{ICONS.knowledge}] card into [+(X+1){ICONS.knowledge}]</span>,
     price: 5,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/263/orange-book_1f4d9.png",
+    cost_type: "power",
     onUse(G, ctx, card) {
-      if (use_power(G, ctx)) {
         let treasure = ctx.random.Shuffle(G.hand.filter(x => x.is_treasure))[0];
         if (treasure) {
           treasure.desc = [treasure.desc, <span> ,+1 {ICONS.knowledge}</span>];
           let previews_onplay = treasure.onPlay;
           treasure.onPlay = (G, ctx) => {previews_onplay(G, ctx); G.knowledge += 1;};
         }
-      }
     }
   },
   {
@@ -204,7 +200,7 @@ export const CARDS = [
   //   }
   // },
   {
-    desc: <span>{ICONS.discard}, {ICONS.knowledge}3: +2{ICONS.search}</span>,
+    desc: <span>{ICONS.discard}, {ICONS.knowledge}2: +2{ICONS.search}</span>,
     price: 3,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/237/books_1f4da.png",
     onUse(G, ctx, card) {
