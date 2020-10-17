@@ -100,11 +100,12 @@ export const CARDS = [
     }
   },
   {
-    desc: <span>{ICONS.power}: +3{ICONS.card}</span>,
+    desc: <span>{ICONS.discard},{ICONS.power}: +3{ICONS.card}</span>,
     price: 4,
     src: "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/263/memo_1f4dd.png",
     cost_type: "power",
     onUse(G, ctx, card) {
+        discard(G, card);
         draw(G, ctx);
         draw(G, ctx);
         draw(G, ctx);
